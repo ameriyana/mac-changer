@@ -1,4 +1,4 @@
-# mac-changer build with pyton 
+# mac-changer build with python 
 
 This tools can spoofing your MAC Address to increase privacy and anonymity. This tools use by educational purpose only, I don’t responsible any damaged or criminal activity. 
 
