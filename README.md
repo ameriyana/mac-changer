@@ -11,7 +11,7 @@ This tools can be used for
 To-Do List
 
 - [x]  Compatible with Python2
-- [ ]  Revert original physical MAC
+- [ ]  Revert original original MAC
 - [ ]  Graphical Interface
 - [ ]  Multiplatform
     - [ ]  Work on OSX
