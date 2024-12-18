@@ -50,11 +50,15 @@ def __random():
 
 def process():
     while True :
+    #create backuo process and store at text file
+        with open("backup.txt", "a") as output_file:
+          subprocess.run(["cat", f"/sys/class/net/{interface}/address"],stdout=output_file)
         ifput = input("Are you sure want to change the MAC Adress? y/n : ")
         if ifput == "yes" or ifput == "y" :
             print("Write random MAC or Manual \n")
             print("1. Random")
-            print("2. Manual \n")
+            print("2. Manual")
+            print("3. Revert Original MAC \n")
             ifput= int(input("Chose your : "))
             if ifput == 1 :
                 print("print 1")
@@ -73,7 +77,16 @@ def process():
                    subprocess.call(["sudo", "ifconfig", interface, "up"])
                    subprocess.call(["ip","link", "show", interface])
                    break
-
+            if ifput == 3:
+                print("check")
+                #subprocess.call(["cat", "./backup.txt"])
+                #use file handling to open text file and write up to mac address
+                mac = open('backup.txt', 'r')
+                subprocess.call(["sudo", "ifconfig", interface, "down"])
+                subprocess.call(["sudo", "ifconfig", interface, "hw", "ether", mac.read()])
+                subprocess.call(["sudo", "ifconfig", interface, "up"])
+                subprocess.call(["ip","link", "show", interface])
+                subprocess.call(["rm","-rf","./backup.txt"])
         elif ifput == "n" or ifput == "no" :
                exit()
         else :
